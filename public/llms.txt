@@ -1,0 +1,12 @@
+# RoktoFinder
+
+> RoktoFinder is a local blood donor finder platform for Mymensingh, Bangladesh — search donors by blood group and area, post emergency requests, and register as a donor.
+
+## Pages
+
+- [Home](/): Overview, hero search, and live donor stats for Mymensingh.
+- [Search Donors](/search): Find donors by blood group, area, or nearby radius.
+- [Register as Donor](/register): Sign up to be listed as a blood donor.
+- [Emergency Request](/emergency): Post an urgent blood request for a patient.
+- [Help](/help): Frequently asked questions and how to use the platform.
+- [Privacy Policy](/privacy): How we collect, use, and protect user data.
