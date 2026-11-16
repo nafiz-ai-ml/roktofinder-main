@@ -1,6 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import { LogIn, User, LogOut, Lock, CalendarPlus, Eye, EyeOff, X, Check } from "lucide-react";
+import {
+  LogIn,
+  User,
+  LogOut,
+  Lock,
+  CalendarPlus,
+  Eye,
+  EyeOff,
+  X,
+  Check,
+  Sparkles,
+} from "lucide-react";
 import { toast } from "sonner";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -17,26 +28,20 @@ import {
   DialogFooter,
   DialogDescription,
 } from "@/components/ui/dialog";
-import {
-  supabase,
-  toBnNum,
-  type Donor,
-  type EmergencyRequest,
-} from "@/lib/supabase";
+import { supabase, toBnNum, type Donor, type EmergencyRequest } from "@/lib/supabase";
 import { computeDonorMetrics, computeFreshness } from "@/lib/donor-metrics";
 import { AvailabilityConfirmCard } from "@/components/dashboard/AvailabilityConfirmCard";
 
 import { ProfileSummary } from "@/components/dashboard/ProfileSummary";
+import { DigitalDonorCard } from "@/components/dashboard/DigitalDonorCard";
 import { DonationTracker } from "@/components/dashboard/DonationTracker";
 import {
   NotificationCenter,
   type NotificationItem,
 } from "@/components/dashboard/NotificationCenter";
 import { NearbyRequests } from "@/components/dashboard/NearbyRequests";
-import {
-  SettingsPanel,
-  type DonorSettings,
-} from "@/components/dashboard/SettingsPanel";
+import { SettingsPanel, type DonorSettings } from "@/components/dashboard/SettingsPanel";
+import { notifyDonorSessionChange } from "@/lib/auth-session";
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
@@ -116,6 +121,7 @@ function saveSession(s: SavedSession | null, remember: boolean) {
       const store = remember ? localStorage : sessionStorage;
       store.setItem(SESSION_KEY, JSON.stringify(s));
     }
+    notifyDonorSessionChange();
   } catch {
     /* ignore */
   }
@@ -141,9 +147,7 @@ function DashboardPage() {
   const [forgotPhone, setForgotPhone] = useState("");
   const [forgotContact, setForgotContact] = useState("");
   const [forgotSubmitting, setForgotSubmitting] = useState(false);
-  const [newDonationDate, setNewDonationDate] = useState(
-    new Date().toISOString().slice(0, 10),
-  );
+  const [newDonationDate, setNewDonationDate] = useState(new Date().toISOString().slice(0, 10));
 
   const submitForgot = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -171,10 +175,7 @@ function DashboardPage() {
     setForgotContact("");
   };
 
-  const metrics = useMemo(
-    () => (donor ? computeDonorMetrics(donor) : null),
-    [donor],
-  );
+  const metrics = useMemo(() => (donor ? computeDonorMetrics(donor) : null), [donor]);
 
   const freshness = useMemo(() => (donor ? computeFreshness(donor) : null), [donor]);
 
@@ -200,7 +201,6 @@ function DashboardPage() {
       available ? "✅ আপনার উপলব্ধতা নিশ্চিত হয়েছে" : "আপনাকে অনুপলব্ধ হিসেবে রাখা হলো",
     );
   };
-
 
   // Auto-set unavailable if not eligible
   useEffect(() => {
@@ -368,9 +368,7 @@ function DashboardPage() {
     setDraft(updated);
     saveSession({ donor: updated, token: sessionToken }, rememberMe);
     setDonationDialog(false);
-    toast.success(
-      `রক্তদান রেকর্ড হয়েছে ❤️ মোট: ${toBnNum(updated.donation_count)} বার`,
-    );
+    toast.success(`রক্তদান রেকর্ড হয়েছে ❤️ মোট: ${toBnNum(updated.donation_count)} বার`);
   };
 
   // Build derived notifications from nearby requests
@@ -395,7 +393,6 @@ function DashboardPage() {
     }
     return items;
   }, [requests, donor, metrics]);
-
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -492,6 +489,18 @@ function DashboardPage() {
                 </p>
               </form>
             </Card>
+
+            {/* Donor Card Highlight for unregistered / not-logged-in visitors */}
+            <div className="mt-6 rounded-2xl border border-primary/20 bg-primary/5 p-4 text-center">
+              <div className="flex items-center justify-center gap-2 text-xs font-semibold text-primary">
+                <Sparkles className="h-4 w-4" />
+                <span>ডিজিটাল ডোনার কার্ড ও সার্টিফিকেট</span>
+              </div>
+              <p className="mt-1 text-xs text-muted-foreground">
+                লগইন করার পর আপনার ব্যক্তিগত ভেরিফাইড ডোনার আইডি কার্ড ও সার্টিফিকেট ডাউনলোড করতে
+                পারবেন।
+              </p>
+            </div>
           </div>
         )}
 
@@ -500,9 +509,7 @@ function DashboardPage() {
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-2xl font-bold text-foreground md:text-3xl">আপনার ড্যাশবোর্ড</h1>
-                <p className="text-sm text-muted-foreground">
-                  স্বাগতম, আপনার সব তথ্য এক জায়গায়।
-                </p>
+                <p className="text-sm text-muted-foreground">স্বাগতম, আপনার সব তথ্য এক জায়গায়।</p>
               </div>
               <Button onClick={logout} variant="outline" size="sm">
                 <LogOut className="h-4 w-4" />
@@ -531,6 +538,8 @@ function DashboardPage() {
               />
             )}
 
+            {/* Digital Donor ID Card & Certificate */}
+            <DigitalDonorCard donor={donor} />
 
             {/* Middle: Donation tracker */}
             <DonationTracker metrics={metrics} onUpdate={() => setDonationDialog(true)} />
@@ -594,8 +603,8 @@ function DashboardPage() {
               পাসওয়ার্ড রিসেট অনুরোধ
             </DialogTitle>
             <DialogDescription>
-              আপনার নিবন্ধিত মোবাইল নম্বর দিন। আমরা যাচাই করে সম্ভব দ্রুততম সময়ে নতুন
-              পাসওয়ার্ড আপনার নম্বরে / ইমেইলে পাঠিয়ে দেব ইনশাআল্লাহ।
+              আপনার নিবন্ধিত মোবাইল নম্বর দিন। আমরা যাচাই করে সম্ভব দ্রুততম সময়ে নতুন পাসওয়ার্ড
+              আপনার নম্বরে / ইমেইলে পাঠিয়ে দেব ইনশাআল্লাহ।
             </DialogDescription>
           </DialogHeader>
           <form onSubmit={submitForgot} className="space-y-3 py-2">

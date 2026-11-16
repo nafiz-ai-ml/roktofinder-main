@@ -113,6 +113,10 @@ export function Footer() {
             <ul className="space-y-2.5 text-sm text-muted-foreground">
               {[
                 { to: "/directory", label: "দাতা খুঁজুন" },
+                { to: "/radar", label: "লাইভ ম্যাপ ও রেডার" },
+                { to: "/compatibility", label: "রক্তের সামঞ্জস্যতা" },
+                { to: "/hospitals", label: "হাসপাতাল ও ব্লাড ব্যাংক" },
+                { to: "/ambulance", label: "অ্যাম্বুলেন্স সার্ভিস" },
                 { to: "/register", label: "নিবন্ধন করুন" },
                 { to: "/emergency", label: "জরুরি অনুরোধ" },
                 { to: "/dashboard", label: "ড্যাশবোর্ড" },

@@ -40,6 +40,11 @@ import { useEffect, useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { HeroVideoPlayer } from "@/components/HeroVideoPlayer";
+import { LiveRadarSection } from "@/components/home/LiveRadarSection";
+import { CompatibilitySection } from "@/components/home/CompatibilitySection";
+import { DonorCardSection } from "@/components/home/DonorCardSection";
+import { HospitalsSection } from "@/components/home/HospitalsSection";
+import { AmbulanceSection } from "@/components/home/AmbulanceSection";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
@@ -482,6 +487,34 @@ function HomePage() {
                 );
               })}
             </div>
+
+            {/* Quick Compatibility Guide Link */}
+            <div className="mt-6 flex flex-col items-center justify-between gap-4 rounded-xl border border-primary/20 bg-gradient-to-r from-primary/5 via-primary/10 to-transparent p-4 sm:flex-row">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary text-white shadow-xs">
+                  <Droplet className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-foreground">
+                    কোন রক্তের গ্রুপ কার সাথে মেলে জানতে চান?
+                  </h3>
+                  <p className="text-xs text-muted-foreground">
+                    আমাদের ইন্টারঅ্যাক্টিভ ব্লাড কম্প্যাটিবিলিটি ক্যালকুলেটরে যাচাই করে নিন।
+                  </p>
+                </div>
+              </div>
+              <Button
+                asChild
+                variant="outline"
+                size="sm"
+                className="shrink-0 border-primary/30 text-primary hover:bg-primary hover:text-white"
+              >
+                <Link to="/compatibility">
+                  <span>সামঞ্জস্যতা দেখুন</span>
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
           </Card>
         </section>
 
@@ -537,6 +570,21 @@ function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* Feature 01: Live Radar Map Showcase */}
+        <LiveRadarSection />
+
+        {/* Feature 02: Blood Compatibility Guide & Calculator Showcase */}
+        <CompatibilitySection />
+
+        {/* Feature 03: Digital Donor Card & Verified Certificate Showcase */}
+        <DonorCardSection />
+
+        {/* Feature 04: Mymensingh Hospitals & Blood Banks Showcase */}
+        <HospitalsSection />
+
+        {/* Feature 05: 24/7 Emergency Ambulance Fleet Showcase */}
+        <AmbulanceSection />
 
         {/* Why RoktoFinder — Benefits, Limitations & Workflow */}
         <section className="relative overflow-hidden py-12 md:py-16">

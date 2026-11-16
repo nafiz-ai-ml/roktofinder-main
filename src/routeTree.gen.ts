@@ -12,11 +12,15 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AmbulanceRouteImport } from './routes/ambulance'
+import { Route as CompatibilityRouteImport } from './routes/compatibility'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as DirectoryRouteImport } from './routes/directory'
 import { Route as EmergencyRouteImport } from './routes/emergency'
 import { Route as HelpRouteImport } from './routes/help'
+import { Route as HospitalsRouteImport } from './routes/hospitals'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as RadarRouteImport } from './routes/radar'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -42,6 +46,16 @@ const AdminRoute = AdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AmbulanceRoute = AmbulanceRouteImport.update({
+  id: '/ambulance',
+  path: '/ambulance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompatibilityRoute = CompatibilityRouteImport.update({
+  id: '/compatibility',
+  path: '/compatibility',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -62,9 +76,19 @@ const HelpRoute = HelpRouteImport.update({
   path: '/help',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HospitalsRoute = HospitalsRouteImport.update({
+  id: '/hospitals',
+  path: '/hospitals',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RadarRoute = RadarRouteImport.update({
+  id: '/radar',
+  path: '/radar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RegisterRoute = RegisterRouteImport.update({
@@ -117,11 +141,15 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRouteWithChildren
+  '/ambulance': typeof AmbulanceRoute
+  '/compatibility': typeof CompatibilityRoute
   '/dashboard': typeof DashboardRoute
   '/directory': typeof DirectoryRoute
   '/emergency': typeof EmergencyRoute
   '/help': typeof HelpRoute
+  '/hospitals': typeof HospitalsRoute
   '/privacy': typeof PrivacyRoute
+  '/radar': typeof RadarRoute
   '/register': typeof RegisterRoute
   '/search': typeof SearchRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -135,11 +163,15 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/ambulance': typeof AmbulanceRoute
+  '/compatibility': typeof CompatibilityRoute
   '/dashboard': typeof DashboardRoute
   '/directory': typeof DirectoryRoute
   '/emergency': typeof EmergencyRoute
   '/help': typeof HelpRoute
+  '/hospitals': typeof HospitalsRoute
   '/privacy': typeof PrivacyRoute
+  '/radar': typeof RadarRoute
   '/register': typeof RegisterRoute
   '/search': typeof SearchRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -155,11 +187,15 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRouteWithChildren
+  '/ambulance': typeof AmbulanceRoute
+  '/compatibility': typeof CompatibilityRoute
   '/dashboard': typeof DashboardRoute
   '/directory': typeof DirectoryRoute
   '/emergency': typeof EmergencyRoute
   '/help': typeof HelpRoute
+  '/hospitals': typeof HospitalsRoute
   '/privacy': typeof PrivacyRoute
+  '/radar': typeof RadarRoute
   '/register': typeof RegisterRoute
   '/search': typeof SearchRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -176,11 +212,15 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/ambulance'
+    | '/compatibility'
     | '/dashboard'
     | '/directory'
     | '/emergency'
     | '/help'
+    | '/hospitals'
     | '/privacy'
+    | '/radar'
     | '/register'
     | '/search'
     | '/sitemap.xml'
@@ -194,11 +234,15 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/ambulance'
+    | '/compatibility'
     | '/dashboard'
     | '/directory'
     | '/emergency'
     | '/help'
+    | '/hospitals'
     | '/privacy'
+    | '/radar'
     | '/register'
     | '/search'
     | '/sitemap.xml'
@@ -213,11 +257,15 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/ambulance'
+    | '/compatibility'
     | '/dashboard'
     | '/directory'
     | '/emergency'
     | '/help'
+    | '/hospitals'
     | '/privacy'
+    | '/radar'
     | '/register'
     | '/search'
     | '/sitemap.xml'
@@ -233,11 +281,15 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRouteWithChildren
+  AmbulanceRoute: typeof AmbulanceRoute
+  CompatibilityRoute: typeof CompatibilityRoute
   DashboardRoute: typeof DashboardRoute
   DirectoryRoute: typeof DirectoryRoute
   EmergencyRoute: typeof EmergencyRoute
   HelpRoute: typeof HelpRoute
+  HospitalsRoute: typeof HospitalsRoute
   PrivacyRoute: typeof PrivacyRoute
+  RadarRoute: typeof RadarRoute
   RegisterRoute: typeof RegisterRoute
   SearchRoute: typeof SearchRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -265,6 +317,20 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin'
       preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ambulance': {
+      id: '/ambulance'
+      path: '/ambulance'
+      fullPath: '/ambulance'
+      preLoaderRoute: typeof AmbulanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compatibility': {
+      id: '/compatibility'
+      path: '/compatibility'
+      fullPath: '/compatibility'
+      preLoaderRoute: typeof CompatibilityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -295,11 +361,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HelpRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/hospitals': {
+      id: '/hospitals'
+      path: '/hospitals'
+      fullPath: '/hospitals'
+      preLoaderRoute: typeof HospitalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/radar': {
+      id: '/radar'
+      path: '/radar'
+      fullPath: '/radar'
+      preLoaderRoute: typeof RadarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/register': {
@@ -390,11 +470,15 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AdminRoute: AdminRouteWithChildren,
+  AmbulanceRoute: AmbulanceRoute,
+  CompatibilityRoute: CompatibilityRoute,
   DashboardRoute: DashboardRoute,
   DirectoryRoute: DirectoryRoute,
   EmergencyRoute: EmergencyRoute,
   HelpRoute: HelpRoute,
+  HospitalsRoute: HospitalsRoute,
   PrivacyRoute: PrivacyRoute,
+  RadarRoute: RadarRoute,
   RegisterRoute: RegisterRoute,
   SearchRoute: SearchRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
