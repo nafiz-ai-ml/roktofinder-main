@@ -18,20 +18,20 @@ import {
  */
 
 export interface FounderSocialLinks {
-  facebook: string;
+  whatsapp: string;
   linkedin: string;
   github: string;
   x: string;
   portfolio: string;
+  facebook?: string;
 }
 
 export const founderSocialLinks: FounderSocialLinks = {
-  // Empty until actual profile URLs are provided. Non-empty URLs will automatically become active links.
-  facebook: "",
-  linkedin: "",
-  github: "",
-  x: "",
-  portfolio: "https://muhammadnafiz.netlify.app/",
+  whatsapp: "https://wa.me/8801540380805",
+  linkedin: "https://www.linkedin.com/in/nafiz-ai/",
+  github: "https://github.com/nafiz-ai-ml/roktofinder-main",
+  x: "https://x.com/MUHAMMADNA70418",
+  portfolio: "https://muhammad-nafiz.vercel.app/",
 };
 
 export const founderInfo = {
