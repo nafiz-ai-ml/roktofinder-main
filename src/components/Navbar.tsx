@@ -23,6 +23,7 @@ import {
 
 const primaryLinks = [
   { to: "/", label: "হোম" },
+  { to: "/about", label: "আমাদের সম্পর্কে" },
   { to: "/directory", label: "ডিরেক্টরি" },
   { to: "/radar", label: "লাইভ ম্যাপ" },
 ] as const;
@@ -144,14 +145,6 @@ export function Navbar() {
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
-
-          <Link
-            to="/about"
-            className="rounded-lg px-2.5 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground lg:px-3 lg:text-sm"
-            activeProps={{ className: "text-primary bg-accent font-semibold" }}
-          >
-            আমাদের সম্পর্কে
-          </Link>
         </nav>
 
         {/* Desktop Action Buttons: Account Icon + Theme + Emergency */}
@@ -202,12 +195,12 @@ export function Navbar() {
               <nav className="flex-1 overflow-y-auto p-4 space-y-1">
                 {[
                   { to: "/", label: "হোম" },
+                  { to: "/about", label: "আমাদের সম্পর্কে" },
                   { to: "/directory", label: "ডোনার ডিরেক্টরি" },
                   { to: "/radar", label: "লাইভ ম্যাপ ও রেডার" },
                   { to: "/hospitals", label: "হাসপাতাল ও ব্লাড ব্যাংক" },
                   { to: "/ambulance", label: "জরুরি অ্যাম্বুলেন্স" },
                   { to: "/compatibility", label: "রক্তের সামঞ্জস্যতা গাইড" },
-                  { to: "/about", label: "আমাদের সম্পর্কে" },
                 ].map((l) => (
                   <Link
                     key={l.to}

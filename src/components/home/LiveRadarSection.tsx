@@ -141,14 +141,14 @@ export function LiveRadarSection() {
                 {/* Floating Mockup Pins */}
                 {/* Pin 1: Donor */}
                 <div
-                  className="absolute top-6 left-12 z-10 animate-bounce"
+                  className="absolute top-6 left-10 z-10 animate-bounce"
                   style={{ animationDuration: "3s" }}
                 >
                   <div className="flex items-center gap-1.5 rounded-full border border-rose-500/40 bg-background/95 px-2.5 py-1 text-[11px] font-bold text-foreground shadow-md backdrop-blur-md">
                     <span className="flex h-5 w-5 items-center justify-center rounded-full bg-rose-500 text-[10px] text-white font-black">
-                      O+
+                      B+
                     </span>
-                    <span>মুরাদ • চরপাড়া ({toBnNum("০.৮")} কি.মি.)</span>
+                    <span>মুহাম্মদ নাফিজ • কেওয়াটখালি ({toBnNum("০.৮")} কি.মি.)</span>
                   </div>
                 </div>
 

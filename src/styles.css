@@ -454,4 +454,11 @@
     background-color: var(--primary);
     color: oklch(0.15 0.02 25);
   }
+
+  /* Image right-click & drag protection */
+  img {
+    -webkit-user-drag: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
 }

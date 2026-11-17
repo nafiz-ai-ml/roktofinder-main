@@ -18,11 +18,11 @@ export interface MapDonorPin {
 export const SAMPLE_MAP_DONORS: MapDonorPin[] = [
   {
     id: "d1",
-    name: "মুরাদ হাসান",
-    blood_group: "O+",
-    area: "চরপাড়া",
-    phone: "01712-345671",
-    coordinates: { lat: 24.7375, lng: 90.418 },
+    name: "মুহাম্মদ নাফিজ",
+    blood_group: "B+",
+    area: "কেওয়াটখালি",
+    phone: "01540-380805",
+    coordinates: { lat: 24.7315, lng: 90.4355 },
     is_available: true,
   },
   {

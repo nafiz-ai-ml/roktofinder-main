@@ -1,4 +1,11 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts, useRouterState } from "@tanstack/react-router";
+import {
+  Outlet,
+  Link,
+  createRootRoute,
+  HeadContent,
+  Scripts,
+  useRouterState,
+} from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { PageTransition } from "@/components/PageTransition";
@@ -17,6 +24,35 @@ function AnalyticsTracker() {
     prev.current = pathname;
     trackPageView(pathname);
   }, [pathname]);
+
+  return null;
+}
+
+/** Prevents right-click and dragging on all images across the website */
+function ImageProtection() {
+  useEffect(() => {
+    const handleContextMenu = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (target && (target.tagName === "IMG" || target.closest("img"))) {
+        e.preventDefault();
+      }
+    };
+
+    const handleDragStart = (e: DragEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (target && (target.tagName === "IMG" || target.closest("img"))) {
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener("contextmenu", handleContextMenu);
+    document.addEventListener("dragstart", handleDragStart);
+
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+      document.removeEventListener("dragstart", handleDragStart);
+    };
+  }, []);
 
   return null;
 }
@@ -53,8 +89,16 @@ export const Route = createRootRoute({
       { property: "og:site_name", content: "RoktoFinder" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/93585cbb-7e8d-49e6-99f4-6a7a3a05ba47/id-preview-d29b7e30--5726f852-061a-4e29-93bc-0c4f21926e50.lovable.app-1776750705666.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/93585cbb-7e8d-49e6-99f4-6a7a3a05ba47/id-preview-d29b7e30--5726f852-061a-4e29-93bc-0c4f21926e50.lovable.app-1776750705666.png" },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/93585cbb-7e8d-49e6-99f4-6a7a3a05ba47/id-preview-d29b7e30--5726f852-061a-4e29-93bc-0c4f21926e50.lovable.app-1776750705666.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/93585cbb-7e8d-49e6-99f4-6a7a3a05ba47/id-preview-d29b7e30--5726f852-061a-4e29-93bc-0c4f21926e50.lovable.app-1776750705666.png",
+      },
     ],
     links: [
       { rel: "icon", type: "image/png", href: "/favicon.png" },
@@ -63,7 +107,7 @@ export const Route = createRootRoute({
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;700&family=Baloo+Da+2:wght@600;700;800&family=Tiro+Bangla:ital@0;1&family=Anek+Bangla:wght@500;700&family=Mina:wght@400;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;700&family=Baloo+Da+2:wght@600;700;800&family=Tiro+Bangla:ital@0;1&family=Anek+Bangla:wght@500;700&family=Mina:wght@400;700&display=swap",
       },
       { rel: "stylesheet", href: appCss },
     ],
@@ -90,6 +134,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   return (
     <>
+      <ImageProtection />
       <AnalyticsTracker />
       <AnnouncementTicker />
       <PageTransition>
