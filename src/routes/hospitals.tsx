@@ -20,6 +20,13 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { HOSPITALS_DATA, type Hospital, type HospitalCategory } from "@/lib/data/hospitals-data";
 
 export const Route = createFileRoute("/hospitals")({
@@ -170,22 +177,25 @@ function HospitalsPage() {
               </div>
 
               {/* Area select */}
-              <div className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-muted-foreground shrink-0" />
-                <select
-                  value={selectedArea}
-                  onChange={(e) => setSelectedArea(e.target.value)}
-                  className="h-11 rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground focus:outline-hidden focus:ring-2 focus:ring-ring"
-                >
-                  <option value="all">সকল এলাকা ({HOSPITALS_DATA.length})</option>
-                  {areas
-                    .filter((a) => a !== "all")
-                    .map((a) => (
-                      <option key={a} value={a}>
-                        {a}
-                      </option>
-                    ))}
-                </select>
+              <div className="w-full md:w-auto min-w-[220px]">
+                <Select value={selectedArea} onValueChange={setSelectedArea}>
+                  <SelectTrigger className="h-11 w-full gap-2 rounded-xl border border-input bg-background/90 px-3.5 py-2 text-sm text-foreground shadow-xs hover:border-primary/50 transition-colors focus:ring-2 focus:ring-primary/20">
+                    <MapPin className="h-4 w-4 text-primary shrink-0" />
+                    <SelectValue placeholder="এলাকা নির্বাচন করুন" />
+                  </SelectTrigger>
+                  <SelectContent className="max-h-72 rounded-xl border-border/80 bg-popover/95 backdrop-blur-md shadow-lg">
+                    <SelectItem value="all" className="font-semibold cursor-pointer">
+                      সকল এলাকা ({HOSPITALS_DATA.length})
+                    </SelectItem>
+                    {areas
+                      .filter((a) => a !== "all")
+                      .map((a) => (
+                        <SelectItem key={a} value={a} className="cursor-pointer">
+                          {a}
+                        </SelectItem>
+                      ))}
+                  </SelectContent>
+                </Select>
               </div>
             </div>
 

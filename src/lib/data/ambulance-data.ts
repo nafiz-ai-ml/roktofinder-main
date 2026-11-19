@@ -137,22 +137,4 @@ export const AMBULANCE_DATA: AmbulanceService[] = [
     descriptionBn:
       "ময়মনসিংহ শহরের কেন্দ্রস্থলে অবস্থান করায় শহরের ভেতরের যেকোনো ক্লিনিক বা বাসা থেকে হাসপাতালে রোগী নেওয়ার জন্য দ্রুত পৌঁছাতে সক্ষম।",
   },
-  {
-    id: "alfatih-freezer-ambulance",
-    providerName: "আল-ফাতিহ ওয়েলফেয়ার ফ্রিজার অ্যাম্বুলেন্স",
-    driverOrContact: "সেবা সমন্বয়ক (মুহাম্মদ নাফিজ / পাঠাগার সেল)",
-    vehicleType: "freezer",
-    baseLocation: "ময়মনসিংহ সদর",
-    primaryPhone: "01540-380805",
-    secondaryPhone: "01716-166160",
-    hasWhatsApp: true,
-    is24x7: true,
-    hasOxygen: false,
-    pricingNote: "মানবিক সেবামূলক সর্বনিম্ন জ্বালানি খরচে পরিচালিত",
-    verified: true,
-    badgeBn: "বিশেষায়িত মরদেহ সংরক্ষণ ও পরিবহন",
-    descriptionBn:
-      "মরদেহ অক্ষত ও সুরক্ষিত অবস্থায় দূরদূরান্তে স্বজনদের কাছে পৌঁছানোর জন্য আন্তর্জাতিক মানের মাইনাস টেম্পারেচার ফ্রিজিং বডি অ্যাম্বুলেন্স।",
-  },
 ];
-

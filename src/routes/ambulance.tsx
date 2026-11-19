@@ -23,6 +23,13 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   AMBULANCE_DATA,
   type AmbulanceService,
   type AmbulanceType,
@@ -214,22 +221,25 @@ function AmbulancePage() {
               </div>
 
               {/* Location Select */}
-              <div className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-muted-foreground shrink-0" />
-                <select
-                  value={selectedLocation}
-                  onChange={(e) => setSelectedLocation(e.target.value)}
-                  className="h-11 rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground focus:outline-hidden focus:ring-2 focus:ring-ring"
-                >
-                  <option value="all">সকল স্ট্যান্ড ({AMBULANCE_DATA.length})</option>
-                  {locations
-                    .filter((l) => l !== "all")
-                    .map((loc) => (
-                      <option key={loc} value={loc}>
-                        {loc}
-                      </option>
-                    ))}
-                </select>
+              <div className="w-full md:w-auto min-w-[220px]">
+                <Select value={selectedLocation} onValueChange={setSelectedLocation}>
+                  <SelectTrigger className="h-11 w-full gap-2 rounded-xl border border-input bg-background/90 px-3.5 py-2 text-sm text-foreground shadow-xs hover:border-primary/50 transition-colors focus:ring-2 focus:ring-primary/20">
+                    <MapPin className="h-4 w-4 text-primary shrink-0" />
+                    <SelectValue placeholder="স্ট্যান্ড নির্বাচন করুন" />
+                  </SelectTrigger>
+                  <SelectContent className="max-h-72 rounded-xl border-border/80 bg-popover/95 backdrop-blur-md shadow-lg">
+                    <SelectItem value="all" className="font-semibold cursor-pointer">
+                      সকল স্ট্যান্ড ({AMBULANCE_DATA.length})
+                    </SelectItem>
+                    {locations
+                      .filter((l) => l !== "all")
+                      .map((loc) => (
+                        <SelectItem key={loc} value={loc} className="cursor-pointer">
+                          {loc}
+                        </SelectItem>
+                      ))}
+                  </SelectContent>
+                </Select>
               </div>
             </div>
 

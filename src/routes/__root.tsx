@@ -10,7 +10,6 @@ import { useEffect, useRef } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { PageTransition } from "@/components/PageTransition";
 import { AnnouncementTicker } from "@/components/AnnouncementTicker";
-import { SiteNoticeDialog } from "@/components/SiteNoticeDialog";
 import { trackPageView } from "@/lib/analytics";
 import appCss from "../styles.css?url";
 
@@ -140,7 +139,6 @@ function RootComponent() {
       <PageTransition>
         <Outlet />
       </PageTransition>
-      <SiteNoticeDialog />
       <Toaster richColors position="top-center" />
     </>
   );
